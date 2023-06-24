@@ -1,0 +1,48 @@
+﻿
+@model IEnumerable<Books.Book>
+
+@{
+    ViewData["Title"] = "BooksLis";
+}
+
+<h1>Список книг</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.Author.Surname)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Author.Nameauthor)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Author.Patronimic)
+            </td>
+           
+            
+        </tr>
+}
+    </tbody>
+</table>
+

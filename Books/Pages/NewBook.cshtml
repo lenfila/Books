@@ -1,0 +1,39 @@
+﻿@page
+@using Books.Controllers
+@model Books.ViewModels.BookModel
+@{
+    BooksController controller = new BooksController();
+}
+ <div align="center">
+<h2>Добавление книги</h2>
+<form method="post" asp-controller="Books" asp-action="AddBook">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+     <label asp-for="Title"></label><br />
+    <input type="text"  asp-for="Title" />
+    </div>
+    <div>
+    <label asp-for="Category"></label><br />
+     <input type="text"  asp-for="Category" />
+    </div>
+    <div>
+    <label asp-for="Author"></label><br />
+    <input type="text" list = "authorList" asp-for="Author" />
+    <datalist id="authorList">
+        @{
+            foreach(Author author in controller.getAllAuthors())
+            {
+                string fio = author.Surname + " " + author.Nameauthor + " " + author.Patronimic;
+                <option value=@fio></option>
+            }
+        }
+    </datalist>
+    </div>
+  
+
+    <div>
+        <input type="submit" value="Отправить" />
+    </div>
+
+</form>
+</div>

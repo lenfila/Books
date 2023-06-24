@@ -1,0 +1,74 @@
+﻿@page
+@model Books.Pages.BooksListModel
+@using Books.Controllers
+
+@{
+    ViewData["Title"] = "Книги";
+    BooksController booksController = new BooksController();
+}
+
+<h1>Книги</h1>
+
+<p>
+    <a asp-page="NewBook">Добавить книгу</a>
+</p>
+
+<form asp-controller="Books" asp-action="Details">
+    <p>
+        Идентификатор: <input type="text" name="id" />
+        <input type="submit" value="Найти" />
+    </p>
+</form>
+<form>
+    <p>
+        <input type="submit"asp-controller="Books" asp-action="getAllBooks"  value="Показать все" />
+    </p>
+</form>
+
+
+@if (Model.Book != null)
+{
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Author)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Book) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.Surname)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Author.Nameauthor)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Author.Patronimic)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>
+}
+
